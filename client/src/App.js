@@ -81,7 +81,7 @@ function App() {
   console.log(title,body, posts)
   return (
     <div className="App">
-      <h2>Welcome to my App</h2>
+      <h2>Welcome to my MERN Test App</h2>
       <form onSubmit={submit}>
         <div className="form-input">
           <input type="text"  name="title" onChange={handleChange} value = {title} placeholder="title"/>

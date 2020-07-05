@@ -6,10 +6,6 @@ const BlogPost = require('../models/blogpost')
 
 // Routes
 router.get('/', (req, res) => {
-    const data =  {
-        username: 'alan',
-        age:20
-    };
 
     BlogPost.find({ })
     .then((data) => {

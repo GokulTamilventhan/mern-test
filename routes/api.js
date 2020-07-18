@@ -1,12 +1,64 @@
+console.log('In api.js')
 const express = require('express');
+const mongoose = require('mongoose');
 
 const router = express.Router();
 
 const BlogPost = require('../models/blogpost')
 
 // Routes
-router.get('/', (req, res) => {
+router.get('/data', (req, res) => {
 
+    let dataBase = req.query.db;
+    let search_category = req.query.category
+    if (dataBase != '') {
+        if (search_category != '') {
+            BlogPost.find({ db: dataBase, category: search_category})
+            .then((data) => {
+                console.log('Data: ', data)
+                res.json(data)
+            })
+            .catch( (error) => {
+                console.log('error', error)
+            })  
+        } else {
+            BlogPost.find({ db: dataBase})
+            .then((data) => {
+                console.log('Data: ', data)
+                res.json(data)
+            })
+            .catch( (error) => {
+                console.log('error', error)
+            })  
+        }
+        
+    } else {
+        if (search_category != '') {
+            BlogPost.find({ category: search_category})
+            .then((data) => {
+                console.log('Data: ', data)
+                res.json(data)
+            })
+            .catch( (error) => {
+                console.log('error', error)
+            })  
+        } else {
+            BlogPost.find({})
+            .then((data) => {
+                console.log('Data: ', data)
+                res.json(data)
+            })
+            .catch( (error) => {
+                console.log('error', error)
+            })  
+        }
+
+    } 
+    
+});
+
+router.get('/statistics', (req, res) => {
+    
     BlogPost.find({ })
     .then((data) => {
         console.log('Data: ', data)
@@ -15,34 +67,24 @@ router.get('/', (req, res) => {
     .catch( (error) => {
         console.log('error', error)
 
-    })
-
+    }) 
     
 });
 
-router.post('/save', (req, res) => {
+/*router.get('/', (req, res) => {
 
-    const data = req.body 
-    const newBlogPost = new BlogPost(data);
     
-    newBlogPost.save((error)  => {
-        if(error){
-            res.status(500).json({msg: 'sorry internal server error'})
-            return;
-        }
+    BlogPost.find({ })
+    .then((data) => {
+        console.log('Data: ', data)
+        res.json(data)
     })
-    return res.json({
-        msg: 'we received'
-    })
-});
+    .catch( (error) => {
+        console.log('error', error)
 
+    }) 
+    
+}); */
 
-router.get('/name', (req, res) => {
-    const data =  {
-        username: 'diffname',
-        age:5
-    };
-    res.json(data)
-});
 
 module.exports = router;

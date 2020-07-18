@@ -12,9 +12,12 @@ const routes = require('./routes/api')
 
 // mongo password qwerty1234
 // const MONGODB_URI = 'mongodb+srv://newUser:qwerty1234@testdb.len0c.mongodb.net/test?retryWrites=true&w=majority';
+//
 
-const MONGODB_URI = 'mongodb+srv://newUser:qwerty1234@testdb.len0c.mongodb.net/<dbname>?retryWrites=true&w=majority';
-mongoose.connect(process.env.MONGODBATLAS_URI || MONGODB_URI || 'mongodb://localhost/mern_db', {
+//const MONGODB_URI = 'mongodb+srv://newUser:qwerty1234@testdb.len0c.mongodb.net/test?retryWrites=true&w=majority';
+const MONGODB_URI = 'mongodb+srv://testuser:12345@test.i8gzu.gcp.mongodb.net/test_one?retryWrites=true&w=majority';
+//mongoose.connect(process.env.MONGODBATLAS_URI || MONGODB_URI || 'mongodb://localhost/mern_db', {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

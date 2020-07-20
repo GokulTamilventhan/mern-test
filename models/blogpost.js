@@ -13,7 +13,7 @@ const BlogPostSchema = new mongoose.Schema({
     //    type:String,
     //    default:Date.now()
     //}
-},{ collection : 'test_one_collection' });
+},{ collection : 'search_results' });
 
 //  model
 const BlogPost = mongoose.model('collection', BlogPostSchema);

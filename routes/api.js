@@ -6,13 +6,17 @@ const router = express.Router();
 
 const BlogPost = require('../models/blogpost')
 
+const stat = require('../models/statistics')
+
 // Routes
 router.get('/data', (req, res) => {
 
     let dataBase = req.query.db;
     let search_category = req.query.category
-    if (dataBase != '') {
-        if (search_category != '') {
+    console.log('db', dataBase, 'category', search_category )
+
+    if (dataBase != null) {
+        if (search_category != null) {
             BlogPost.find({ db: dataBase, category: search_category})
             .then((data) => {
                 console.log('Data: ', data)
@@ -33,7 +37,7 @@ router.get('/data', (req, res) => {
         }
         
     } else {
-        if (search_category != '') {
+        if (search_category != null) {
             BlogPost.find({ category: search_category})
             .then((data) => {
                 console.log('Data: ', data)
@@ -59,7 +63,7 @@ router.get('/data', (req, res) => {
 
 router.get('/statistics', (req, res) => {
     
-    BlogPost.find({ })
+    stat.find({ })
     .then((data) => {
         console.log('Data: ', data)
         res.json(data)
